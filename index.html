@@ -41,7 +41,6 @@ body {
     align-items: center;
 }
 
-/* Style pour le fond de la popup (overlay) */
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -135,12 +134,12 @@ body {
   justify-content: space-around;
   margin-top: 10px;
   width : 95%;
-  height : 200px;
+  height : auto;
 }
 
 .circle{
     position: relative; /* Pour permettre un positionnement relatif des enfants */
-    height: 200px;
+    height: auto;
     display: flex;
     justify-content: center; 
     align-items: center; 
@@ -228,37 +227,47 @@ body {
     }
 
 .outputs-container {
-    width : 90%;
+    width: 90%;
     font-size: 10px;
     font-weight: bold;
     color: #000; /* Couleur du texte, ajustez selon vos besoins */
     margin-top: 10px;
     display: flex;
-    flex : 4;
-    flex-flow : row;
+    flex-flow: row wrap; /* Permet l'enroulement si nécessaire */
     justify-content: space-around;
-    }
-    
+}
+
 .outputs {
     display: flex;
     flex-direction: column;
     align-items: center; 
-    justify-content: space-between; 
     text-align: center;
+    gap: 5px; /* Ajoute de l'espace entre les éléments */
+}
+
+.outputsRelative, .outputsAbsolute {
+    display: inline-flex; /* Alignement en ligne */
+    align-items: baseline; /* Aligne le bas des textes */
+    gap: 5px; /* Ajoute de l'espace entre les deux */
+}
+
+.outputsRelative {
+    font-size: 25px;
+    color: red;
+}
+
+.outputsAbsolute {
+    font-size: 10px;
+    display: inline-block; /* Aligne en ligne avec outputsRelative */
 }
 
 .outputs:nth-child(4) {
     border-right: 2px solid black; /* Add a vertical line */
-    margin-right: 5px; /* Optional: Space after the line */
+    margin-right: 5px; /* Optionnel : Espace après la ligne */
 }
 
-.outputsRelative {
-    font-size: 30px;
-    color: red;
-    margin-top: 10px; /* Ajuste l'espacement vertical */
-    margin-bottom:0px; /* Ajuste l'espacement vertical */
-    display: inline-block; /* Garantit une disposition horizontale fluide */
-}
+
+
 
 .outputsAbsolute {
     font-size: 10px;
@@ -371,7 +380,7 @@ body {
               <div class="outputsAbsolute" id="ABiodiv">impact sur les sols</div>
             </div>
             <div class="outputs">
-              <div>Consommation d'eau</div>
+              <div>Eau</div>
               <div class="outputsRelative" id="REau">0%</div>
               <div class="outputsAbsolute" id="AEau">1 500 000 m3</div>
             </div>
@@ -532,15 +541,15 @@ function updateCircle(variables) {
     let valueRCA = variables[7]/100;
     let valueREBE = variables[9]/100;
     
-    circleRCA.style.width = `${50*(2+2*valueRCA)}px`; 
-    circleRCA.style.height = `${50*(2+2*valueRCA)}px`;
+    circleRCA.style.width = `${50*(1+2*valueRCA)}px`; 
+    circleRCA.style.height = `${50*(1+2*valueRCA)}px`;
     
-    circleREBE.style.width = `${50*(2+2*valueREBE)}px`;
-    circleREBE.style.height = `${50*(2+2*valueREBE)}px`;
+    circleREBE.style.width = `${50*(1+2*valueREBE)}px`;
+    circleREBE.style.height = `${50*(1+2*valueREBE)}px`;
      
     // Calcul du décalage nécessaire pour garder les cercles centrés
-    let offsetRCA = 50*(2+2*valueRCA) / 2;
-    let offsetREBE = -50*(2+2*valueREBE) / 2;
+    let offsetRCA = 50*(1+2*valueRCA) / 2;
+    let offsetREBE = -50*(1+2*valueREBE) / 2;
 
     // Appliquer les décalages avec 'transform' pour les centrer
     circleRCA.style.transform = `translateX(${offsetRCA}px)`;
@@ -646,7 +655,7 @@ function checkSliderConstraints(rangeSlider, sliderValue, currentValue, previous
     if (reserve <= 0) {
         // Bloquer le mouvement dans la direction non autorisée
         if ((currentValue > previousValue && directionAllowed === "decrease") ||  
-            (currentValue < previousValue && directionAllowed === "increase")) {
+            (previousValue > previousValue && directionAllowed === "increase")) {
             return false;
         }
     }
@@ -670,7 +679,9 @@ rangeSlider1.addEventListener('input', function () {
         updateGauge(newVariables[10]);
         updateVariables(newVariables);
         previousSlider1Value = currentValue; // Mettre à jour la valeur précédente
-    } 
+    } else {
+    
+    }
 });
 
 rangeSlider2.addEventListener('input', function () {
