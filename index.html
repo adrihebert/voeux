@@ -1,1 +1,736 @@
-<h1>hello</h1>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+    <title>Onglets avec Graphique</title>
+    <link rel="stylesheet" href="styles.css">
+</head> 
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    
+}
+
+.gameBorder {
+    border: 2px solid grey;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    background-color: #f3e6de;
+    max-width: 500px;
+}
+
+.tab-container {
+    flex : 1;
+    display : flex;
+    flex-direction: column;
+    width: 95%;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputTitle {
+    text-align: center;
+}
+
+.inputTitleContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.aide {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 5px;
+    color: black; 
+    font-weight: bold;
+    background-color: white;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.aideTexte {
+    visibility: hidden;
+    width: 300px; 
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; 
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-weight: normal;
+}
+
+.aideTexte::after {
+    content: '';
+    position: absolute;
+    top: 100%; 
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.aide:hover .aideTexte {
+    visibility: visible;
+    opacity: 1;
+}
+
+.slider-container {
+    margin-top: 5px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.slider {
+    width: 100%;
+    height: 10px;
+    appearance: none;
+    background: #ddd;
+    border-radius: 50px;
+    outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: black;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb { 
+    width: 20px;
+    height: 20px;
+    background: #4CAF50;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.value-display {
+    margin-top: 10px;
+    margin-left : 20px;
+    font-size: 18px;
+    font-weight: bold;
+    transform: translateY(-13px);
+}
+
+.visuals {
+  display : flex;
+  flex :2;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 10px;
+  width : 95%;
+  height : 200px;
+}
+
+.circle{
+    position: relative; /* Pour permettre un positionnement relatif des enfants */
+    height: 200px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+.circleValue {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}
+ 
+.circleLegende{
+    font-weight: bold;
+    font-size: 15px;  
+    text-align: center;
+}
+
+.circleRCA {
+    background: #fb551e;
+    opacity: 0.85;
+    border-radius: 50%;
+    transform: translateX(50px); 
+    height: 100px;
+    width: 100px;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    position: relative;
+    left: -15%;
+}
+
+.circleREBE {
+    background: #622b59;
+    opacity: 0.85;
+    border-radius: 50%;
+    transform: translateX(-50px); 
+    height: 100px;
+    width: 100px;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    position: relative; 
+    left: 15%; 
+}
+
+
+
+.treso-container {
+    width: 95%;
+    height: 15px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 0px solid #333;
+    position: relative;
+}
+
+.treso-fill {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255,72,0,1) 0%, rgba(250,255,64,1) 50%, rgba(0,167,8,1) 100%);
+    /* background-color: #4CAF50; */
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    transition: height 0.2s ease;
+}
+
+.euro-logo {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    z-index: 2;
+    transform: translateY(-25%);
+    font-size: 35px;
+    font-weight: bold;
+    color: black;
+    transition: bottom 0.2s ease;
+    background-color: white;
+    border-radius: 50%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    }
+
+.outputs-container {
+    width : 90%;
+    font-size: 10px;
+    font-weight: bold;
+    color: #000; /* Couleur du texte, ajustez selon vos besoins */
+    margin-top: 10px;
+    display: flex;
+    flex : 4;
+    flex-flow : row;
+    justify-content: space-around;
+    }
+    
+.outputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: space-between; 
+    text-align: center;
+}
+
+.outputs:nth-child(4) {
+    border-right: 2px solid black; /* Add a vertical line */
+    margin-right: 5px; /* Optional: Space after the line */
+}
+
+.outputsRelative {
+    font-size: 30px;
+    color: red;
+    margin-top: 10px; /* Ajuste l'espacement vertical */
+    margin-bottom:0px; /* Ajuste l'espacement vertical */
+    display: inline-block; /* Garantit une disposition horizontale fluide */
+}
+
+.outputsAbsolute {
+    font-size: 10px;
+    display: inline-block; /* Aligne en ligne avec outputsRelative */
+}
+</style>
+<body> 
+    <div class='gameBorder'>
+        <div class="tab-container"> 
+            <div id="Croissance" class='inputs'>
+                <div class='inputTitleContainer'>
+                    <h3 class='inputTitle'>Croissance du chiffre d'affaires</h3>
+                    <span class="aide">?
+                        <span class="aideTexte">Votre croissance peut contribuer au financement de votre transformation stratégique mais vous éloigne en revanche de vos objectifs socio-environnementaux</span>
+                    </span>
+                </div>
+                    <div class="slider-container">
+                        <input type="range" min="0" max="100" value="0" step="1" class="slider" id="rangeSlider1">
+                        <div class="value-display" id="sliderValue1">0%</div>
+                    </div>
+            </div>
+    
+            <div id="Fournisseurs" class='inputs'>
+                <div class='inputTitleContainer'>
+                    <h3 class='inputTitle'>Agriculture raisonnée et contrats longs </h3>
+                    <span class="aide">?
+                        <span class="aideTexte">Vous accompagnez vos fournisseurs dans leur transition vers une agriculture plus raisonnée et signez des partenariats long terme leur assurant une juste rémunération</span>
+                    </span>
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="0" max="100" value="0" step="1" class="slider" id="rangeSlider2">
+                    <div class="value-display" id="sliderValue2">0%</div>
+                </div>
+            </div>
+    
+            <div id="PackagingTransport" class='inputs'>
+                <div class='inputTitleContainer'>
+                    <h3 class='inputTitle'>Décarbonation du transport et éco-packaging</h3>
+                    <span class="aide">?
+                        <span class="aideTexte">Vous optimisez votre chaine logistique en favorisant le fret ferroviaire. Pour les packagings, vous favorisez la consigne et l’éco-conception</span>
+                    </span>
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="0" max="100" value="0" step="1" class="slider" id="rangeSlider3">
+                    <div class="value-display" id="sliderValue3">0%</div>
+                </div>
+            </div>
+            
+            <div id="Redirection" class='inputs'>
+                <div class='inputTitleContainer'>
+                    <h3 class='inputTitle'>Transition vers le végétal</h3>
+                    <span class="aide">?
+                        <span class="aideTexte">Vous réduisez la part de protéines animale dans vos produits et investissez en R&D dans des substituts «sains et végétariens»</span>
+                    </span>
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="0" max="100" value="0" step="1" class="slider" id="rangeSlider4">
+                    <div class="value-display" id="sliderValue4">0%</div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="visuals">
+          <div class="treso-container">
+            <div class="euro-logo" id="euroLogo">€</div>
+            <div class="treso-fill" id="tresoEtat"></div>
+          </div>
+          <div class="circle"> 
+                <div class="circleRCA" id='circleRCA'>   
+                    <div class='circleValue' id="RCA">16%</div>
+                    <div class='circleLegende'>Chiffre d'affaires</div>
+                </div>
+                <div class="circleREBE" id='circleREBE'>   
+                    <div class='circleValue' id="REBE">6%</div>
+                    <div class='circleLegende'>EBE</div>
+                </div>
+              
+          </div>  
+        </div>
+        
+        <div class="outputs-container">
+            <div class="outputs">
+              <div>Climat</div>
+              <div class="outputsRelative" id="RCO2">0%</div>
+              <div class="outputsAbsolute" id="ACO2">200 000 tCO2e</div>
+            </div>
+            <div class="outputs">
+              <div>Biodiversité</div>
+              <div class="outputsRelative" id="RBiodiv">0%</div>
+              <div class="outputsAbsolute" id="ABiodiv">impact sur les sols</div>
+            </div>
+            <div class="outputs">
+              <div>Consommation d'eau</div>
+              <div class="outputsRelative" id="REau">0%</div>
+              <div class="outputsAbsolute" id="AEau">1 500 000 m3</div>
+            </div>
+            <div class="outputs"></div>
+            <div class="outputs">
+              <div>Fournisseurs</div>
+              <div class="outputsRelative" id="RFournisseurs">0%</div>
+              <div class="outputsAbsolute" id="AFournisseurs">sur les revenus</div>
+            </div>
+        </div>
+    </div>
+    <script>
+      
+
+// Appel au serveur
+
+/*function callServer(rangeSlider1, rangeSlider2, rangeSlider3, rangeSlider4) {
+    /*try {
+        // Préparer la requête avec les données nécessaires
+        const response = await fetch('/wp-json/calcul/v1/compute', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                rangeSlider1,
+                rangeSlider2,
+                rangeSlider3,
+                rangeSlider4,
+            }),
+        });
+
+        // Vérifier si la réponse est correcte
+        if (!response.ok) {
+            const error = await response.json();
+            console.error('Erreur du backend:', error.error || 'Requête invalide');
+            return;
+        }
+
+        // Extraire les résultats de la réponse
+        const data = await response.json();
+        console.log('Résultats du calcul:', data);
+
+        // Utiliser les résultats ici
+        return data;
+    } 
+    catch (error) {
+        console.error('Erreur de communication avec le serveur:', error);
+    }
+};*/
+
+
+// Calcul
+
+
+function calculBackend(rangeSlider1, rangeSlider2, rangeSlider3, rangeSlider4) {
+    rangeSlider1 = rangeSlider1 / 100;
+    rangeSlider2 = rangeSlider2 / 100;
+    rangeSlider3 = rangeSlider3 / 100;
+    rangeSlider4 = rangeSlider4 / 100;
+
+    
+    const C2 = -0.30;
+    const C3 = -0.20;
+    const C4 = -0.40;
+ 
+    const B2 = -0.30;
+    const B3 = -0.13;
+    const B4 = -0.30;
+ 
+    const E2 = -0.15;
+    const E3 = -0.15;
+    const E4 = -0.25;
+    
+    const F2 = 0.30;
+    const F3 = 0.0;
+    const F4 = 0.0;
+ 
+    const CA2 = 0.15;
+    const CA3 = 0.1;
+    const CA4 = -0.05;
+ 
+    const EBE2 = -0.15;
+    const EBE3 = -0.05;
+    const EBE4 = 0.1;
+ 
+    const Dette2 = 145;
+    const Dette3 = 110;
+    const Dette4 = 135;
+ 
+    // Calculs
+    const CA = 500 * (1 + rangeSlider1 + CA2 * rangeSlider2 + CA3 * rangeSlider3 + CA4 * rangeSlider4);
+    const RCA = 100*(rangeSlider1 + (CA2 * rangeSlider2) + (CA3 * rangeSlider3) + (CA4 * rangeSlider4));
+    const EBE = (500 / 14) * (1 + rangeSlider1 + EBE2 * rangeSlider2 + EBE3 * rangeSlider3 + EBE4 * rangeSlider4);
+    const REBE = 100*(rangeSlider1 + (EBE2 * rangeSlider2) + (EBE3 * rangeSlider3) + (EBE4 * rangeSlider4));
+    const reserve = 200 * (1 + rangeSlider1) - (Dette2 * rangeSlider2 + Dette3 * rangeSlider3 + Dette4 * rangeSlider4);
+    const ACO2 = 200000 * (1 + rangeSlider1 + C2 * rangeSlider2 + C3 * rangeSlider3 + C4 * rangeSlider4);
+    const RCO2 = 100*(rangeSlider1 + C2 * rangeSlider2 + C3 * rangeSlider3 + C4 * rangeSlider4);
+    //const ABiodiv = 100 * (1 + rangeSlider1 + B2 * rangeSlider2 + B3 * rangeSlider3 + B4 * rangeSlider4);
+    const RBiodiv = 100*(rangeSlider1 + B2 * rangeSlider2 + B3 * rangeSlider3 + B4 * rangeSlider4);
+    const AEau = 1500000 * (1 + rangeSlider1 + E2 * rangeSlider2 + E3 * rangeSlider3 + E4 * rangeSlider4);
+    const REau = 100*(rangeSlider1 + E2 * rangeSlider2 + E3 * rangeSlider3 + E4 * rangeSlider4);
+    //const AFournisseurs = 100 * (1 + rangeSlider1 + F2 * rangeSlider2 + F3 * rangeSlider3 + F4 * rangeSlider4);
+    const RFournisseurs = 100*(F2 * rangeSlider2 + F3 * rangeSlider3 + F4 * rangeSlider4);
+
+    // Tableau des résultats
+    return [
+        Math.round(RCO2),
+        Math.round(ACO2),
+        Math.round(RBiodiv),
+        //Math.round(ABiodiv),
+        Math.round(REau),
+        Math.round(AEau),
+        Math.round(RFournisseurs),
+        //Math.round(AFournisseurs),
+        Math.round(CA),
+        Math.round(RCA),
+        Math.round(EBE),
+        Math.round(REBE),
+        Math.round(reserve)
+    ];
+}
+
+// Update des valeurs
+
+function updateVariables(variables) {
+    const elementIds = ['RCO2', 'ACO2', 'RBiodiv', 'REau', 'AEau', 'RFournisseurs','CA','RCA','EBE', 'REBE', 'reserve'];
+     
+    document.getElementById(elementIds[7]).textContent = `${variables[7]}%`;
+    document.getElementById(elementIds[9]).textContent = `${variables[9]}%`;
+
+    for (let index = 0; index < variables.length-1; index++) {
+        const value = variables[index];
+        const elementId = elementIds[index];
+        const oldElement = document.getElementById(elementId);
+
+        if (elementId.startsWith('R')) {
+            oldElement.textContent = `${value}%`;
+        } else { if (elementId.startsWith('ACO2')){
+            oldElement.textContent = `${value} tCO2e`;
+        }
+        else { if (elementId.startsWith('AEau')) {
+            oldElement.textContent = `${value} m3`;
+        } else {
+            oldElement.textContent = `${value}`;
+                    }
+                }
+            } 
+        }
+    }
+
+// Update des cercles 
+
+function updateCircle(variables) {
+    const circleRCA = document.getElementById('circleRCA');
+    const circleREBE = document.getElementById('circleREBE');
+    
+    let valueRCA = variables[7]/100;
+    let valueREBE = variables[9]/100;
+    
+    circleRCA.style.width = `${50*(2+2*valueRCA)}px`; 
+    circleRCA.style.height = `${50*(2+2*valueRCA)}px`;
+    
+    circleREBE.style.width = `${50*(2+2*valueREBE)}px`;
+    circleREBE.style.height = `${50*(2+2*valueREBE)}px`;
+     
+    // Calcul du décalage nécessaire pour garder les cercles centrés
+    let offsetRCA = 50*(2+2*valueRCA) / 2;
+    let offsetREBE = -50*(2+2*valueREBE) / 2;
+
+    // Appliquer les décalages avec 'transform' pour les centrer
+    circleRCA.style.transform = `translateX(${offsetRCA}px)`;
+    circleREBE.style.transform = `translateX(${offsetREBE}px)`;
+    
+}
+
+
+// Update de la jauge
+
+function updateGauge(reserve){
+    // Sélection des éléments de la jauge
+    const tresoEtat = document.getElementById('tresoEtat');
+    const euroLogo = document.getElementById('euroLogo');
+    
+    // Fonction pour calculer la couleur en fonction du pourcentage
+    function getColorFromPercentage(percent) {
+        if (percent < 0) percent = 0;
+        if (percent > 100) percent = 100;
+        let red = Math.round(2*255 * (1 - percent / 100));
+        let green = Math.round(2*255 * percent/100);
+        return `rgb(${red}, ${green}, 0)`;
+    }
+    
+    let pourcentage = reserve/260;
+    // Ajuster la hauteur, la couleur et le logo selon le pourcentage
+    if (pourcentage > 1) {
+        // tresoEtat.style.width = 100 + '%';
+        const cropValue = 0 + '%'; // Ex. "50%"
+        tresoEtat.style.clipPath = `inset(0 ${cropValue} 0 0)`;
+        euroLogo.style.left = 98 + '%';
+    } else
+    {
+        // tresoEtat.style.width = reserve + '%';
+        const cropValue = (1-pourcentage)*100 + '%'; // Ex. "50%"
+        tresoEtat.style.clipPath = `inset(0 ${cropValue} 0 0)`;
+        euroLogo.style.left = pourcentage*100-2 + '%';
+
+    }
+    //tresoEtat.style.backgroundColor = getColorFromPercentage(reserve);
+}
+
+// Objectifs sur les sorties 
+function objectifs(variables){
+    const objectifCO2 = -40;
+    const objectifBiodiv =-30 ;
+    const objectifEau =-15;
+    const objectifFournisseurs =15;
+    
+    //const elementIds = ['RCO2', 'ACO2', 'RBiodiv', 'REau', 'AEau', 'RFournisseurs','CA','RCA','EBE', 'REBE', 'reserve'];
+    
+    let RCO2 = variables[0];
+    let RBiodiv = variables[2];
+    let REau = variables[3];
+    let RFournisseurs = variables[5];
+
+    
+    if (RCO2 < objectifCO2){
+        document.getElementById('RCO2').style.color = 'green';
+    } else if (RCO2 > objectifCO2){
+            document.getElementById('RCO2').style.color = 'red';
+    }
+    
+    if (RBiodiv < objectifBiodiv){
+        document.getElementById('RBiodiv').style.color = 'green';
+    } else if (RBiodiv > objectifCO2){
+            document.getElementById('RBiodiv').style.color = 'red';
+    }
+    
+    if (REau < objectifEau){
+        document.getElementById('REau').style.color = 'green';
+    } else if (REau > objectifCO2){
+            document.getElementById('REau').style.color = 'red';
+    }
+    
+    if (RFournisseurs > objectifFournisseurs){
+        document.getElementById('RFournisseurs').style.color = 'green';
+    } else if (RFournisseurs > objectifCO2){
+            document.getElementById('RFournisseurs').style.color = 'red';
+    }
+        
+}
+
+// Gestion des sliders
+const rangeSlider1 = document.getElementById('rangeSlider1');
+const sliderValue1 = document.getElementById('sliderValue1');
+const rangeSlider2 = document.getElementById('rangeSlider2');
+const sliderValue2 = document.getElementById('sliderValue2');
+const rangeSlider3 = document.getElementById('rangeSlider3');
+const sliderValue3 = document.getElementById('sliderValue3');
+const rangeSlider4 = document.getElementById('rangeSlider4');
+const sliderValue4 = document.getElementById('sliderValue4');
+
+
+// Cablage de la reserve 
+
+let previousSlider1Value = parseFloat(rangeSlider1.value);
+let previousSlider2Value = parseFloat(rangeSlider2.value);
+let previousSlider3Value = parseFloat(rangeSlider3.value);
+let previousSlider4Value = parseFloat(rangeSlider4.value);
+ 
+function checkSliderConstraints(rangeSlider, sliderValue, currentValue, previousValue, reserve, directionAllowed) {
+    if (reserve <= 0) {
+        // Bloquer le mouvement dans la direction non autorisée
+        if ((currentValue > previousValue && directionAllowed === "decrease") ||  
+            (currentValue < previousValue && directionAllowed === "increase")) {
+            return false;
+        }
+    }
+    return true;
+}
+
+rangeSlider1.addEventListener('input', function () {
+    const currentValue = parseFloat(rangeSlider1.value);
+    const newVariables = calculBackend(
+        currentValue,
+        parseFloat(rangeSlider2.value),
+        parseFloat(rangeSlider3.value),
+        parseFloat(rangeSlider4.value)
+    );
+
+    // Vérifier les contraintes
+    if (checkSliderConstraints(rangeSlider1, sliderValue1, currentValue, previousSlider1Value, newVariables[10], "increase")) {
+        sliderValue1.textContent = `${currentValue}%`;
+        objectifs(newVariables);
+        updateCircle(newVariables);
+        updateGauge(newVariables[10]);
+        updateVariables(newVariables);
+        previousSlider1Value = currentValue; // Mettre à jour la valeur précédente
+    } 
+});
+
+rangeSlider2.addEventListener('input', function () {
+    const currentValue = parseFloat(rangeSlider2.value);
+    const newVariables = calculBackend(
+        parseFloat(rangeSlider1.value),
+        currentValue,
+        parseFloat(rangeSlider3.value),
+        parseFloat(rangeSlider4.value)
+    );
+
+    // Vérifier les contraintes
+    if (checkSliderConstraints(rangeSlider2, sliderValue2, currentValue, previousSlider2Value, newVariables[10], "decrease")) {
+        sliderValue2.textContent = `${currentValue}%`;
+        objectifs(newVariables);
+        updateCircle(newVariables);
+        updateGauge(newVariables[10]);
+        updateVariables(newVariables);
+        previousSlider2Value = currentValue; // Mettre à jour la valeur précédente
+    }
+});
+
+rangeSlider3.addEventListener('input', function () {
+    const currentValue = parseFloat(rangeSlider3.value);
+    const newVariables = calculBackend(
+        parseFloat(rangeSlider1.value),
+        parseFloat(rangeSlider2.value),
+        currentValue,
+        parseFloat(rangeSlider4.value)
+    );
+
+    // Vérifier les contraintes
+    if (checkSliderConstraints(rangeSlider3, sliderValue3, currentValue, previousSlider3Value, newVariables[10], "decrease")) {
+        sliderValue3.textContent = `${currentValue}%`;
+        objectifs(newVariables);
+        updateCircle(newVariables);
+        updateGauge(newVariables[10]);
+        updateVariables(newVariables);
+        previousSlider3Value = currentValue; // Mettre à jour la valeur précédente
+    }
+});
+
+rangeSlider4.addEventListener('input', function () {
+    const currentValue = parseFloat(rangeSlider4.value);
+    const newVariables = calculBackend(
+        parseFloat(rangeSlider1.value),
+        parseFloat(rangeSlider2.value),
+        parseFloat(rangeSlider3.value),
+        currentValue
+    );
+
+    // Vérifier les contraintes
+    if (checkSliderConstraints(rangeSlider4, sliderValue4, currentValue, previousSlider4Value, newVariables[10], "decrease")) {
+        sliderValue4.textContent = `${currentValue}%`;
+        objectifs(newVariables);
+        updateCircle(newVariables);
+        updateGauge(newVariables[10]);
+        updateVariables(newVariables);
+        previousSlider4Value = currentValue; // Mettre à jour la valeur précédente
+    }
+});
+
+// Initialisation
+
+const newVariables = calculBackend(
+    parseFloat(rangeSlider1.value),
+    parseFloat(rangeSlider2.value),
+    parseFloat(rangeSlider3.value),
+    parseFloat(rangeSlider4.value)
+);
+updateGauge(newVariables[10]);
+updateVariables(newVariables);
+    </script>
+</body>
+</html>
