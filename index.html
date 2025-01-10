@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta content='width=device-width, initial-scale=1' name='viewport'/>
-    <title>Onglets avec Graphique</title>
-</head> 
+    <title>Mirliton</title>
+
 <style>
+
+@font-face {
+    font-family: FuturaPTBook;
+    src: url("../FuturaPTBook.otf") 
+}
+
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -274,6 +280,7 @@ body {
     display: inline-block; /* Aligne en ligne avec outputsRelative */
 }
 </style>
+</head> 
 <body> 
     <div class='gameBorder'>
         <div class="tab-container"> 
@@ -357,11 +364,11 @@ body {
           </div>
           <div class="circle"> 
                 <div class="circleRCA" id='circleRCA'>   
-                    <div class='circleValue' id="RCA">16%</div>
+                    <div class='circleValue' id="RCA">0%</div>
                     <div class='circleLegende'>Chiffre d'affaires</div>
                 </div>
                 <div class="circleREBE" id='circleREBE'>   
-                    <div class='circleValue' id="REBE">6%</div>
+                    <div class='circleValue' id="REBE">0%</div>
                     <div class='circleLegende'>EBE</div>
                 </div>
               
@@ -655,7 +662,7 @@ function checkSliderConstraints(rangeSlider, sliderValue, currentValue, previous
     if (reserve <= 0) {
         // Bloquer le mouvement dans la direction non autorisée
         if ((currentValue > previousValue && directionAllowed === "decrease") ||  
-            (previousValue > previousValue && directionAllowed === "increase")) {
+            (currentValue < previousValue && directionAllowed === "increase")) {
             return false;
         }
     }
@@ -670,7 +677,6 @@ rangeSlider1.addEventListener('input', function () {
         parseFloat(rangeSlider3.value),
         parseFloat(rangeSlider4.value)
     );
-
     // Vérifier les contraintes
     if (checkSliderConstraints(rangeSlider1, sliderValue1, currentValue, previousSlider1Value, newVariables[10], "increase")) {
         sliderValue1.textContent = `${currentValue}%`;
@@ -679,8 +685,6 @@ rangeSlider1.addEventListener('input', function () {
         updateGauge(newVariables[10]);
         updateVariables(newVariables);
         previousSlider1Value = currentValue; // Mettre à jour la valeur précédente
-    } else {
-    
     }
 });
 
@@ -821,6 +825,7 @@ const newVariables = calculBackend(
 );
 updateGauge(newVariables[10]);
 updateVariables(newVariables);
-    </script>
+updateCircle(newVariables);
+</script>
 </body>
 </html>
