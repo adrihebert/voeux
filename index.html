@@ -393,7 +393,7 @@ body {
         <div class="outputs">
           <div>Eau</div>
           <div class="outputsRelative" id="REau">0%</div>
-          <div class="outputsAbsolute" id="AEau">1 500 000 m3</div>
+          <div class="outputsAbsolute" id="AEau">1,5 Mm3</div>
         </div>
         <div class="outputs"></div>
         <div class="outputs">
@@ -533,7 +533,7 @@ function updateVariables(variables) {
             oldElement.textContent = `${value} tCO2e`;
         }
         else { if (elementId.startsWith('AEau')) {
-            oldElement.textContent = `${value} m3`;
+            oldElement.textContent = `${value/1000000} Mm3`;
         } else {
             oldElement.textContent = `${value}`;
                     }
