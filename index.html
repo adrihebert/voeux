@@ -290,121 +290,119 @@ body {
     <div>Introduction</div>
     <div class='texte' id='texte'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consectetur ultricies purus, eget varius enim sodales vel. Fusce non metus id magna ornare consequat. Proin consequat, mi sed lacinia cursus, turpis erat elementum magna, vel sagittis velit tortor in mauris. Sed lobortis neque vel dapibus dapibus. Nam vestibulum tincidunt velit, et maximus sem fringilla nec. Integer aliquet eget ipsum nec eleifend. Nulla vestibulum auctor magna, aliquam sodales ipsum euismod et. Duis pretium sem felis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In sit amet nibh euismod, accumsan leo ut, tristique neque. Praesent condimentum convallis tortor eu bibendum. Fusce dictum lobortis posuere. Ut finibus porta nibh, at sodales diam fermentum vehicula. Etiam iaculis feugiat ultricies. Nam ac ullamcorper eros. Etiam blandit sapien vel ornare viverra
     </div>
-    <div class='gameBorder'>
-        <div class="tab-container"> 
-            <div id="Croissance" class='inputs'>
-                <div class='inputTitleContainer'>
-                    <h3 class='inputTitle'>Croissance du chiffre d'affaires</h3>
-                    <button id="b1">?</button>
-                    <div id="popup1" class="popup-overlay">
-                        <div class="popup-content">
-                            <h2>Croissance du chiffre d'affaires</h2>
-                            <p>Votre croissance peut contribuer au financement de votre transformation stratégique mais vous éloigne en revanche de vos objectifs socio-environnementaux</p>
-                            <button class="close-btn" id="close-popup1">Fermer</button>
-                        </div>
+    <div class="tab-container"> 
+        <div id="Croissance" class='inputs'>
+            <div class='inputTitleContainer'>
+                <h3 class='inputTitle'>Croissance du chiffre d'affaires</h3>
+                <button id="b1">?</button>
+                <div id="popup1" class="popup-overlay">
+                    <div class="popup-content">
+                        <h2>Croissance du chiffre d'affaires</h2>
+                        <p>Votre croissance peut contribuer au financement de votre transformation stratégique mais vous éloigne en revanche de vos objectifs socio-environnementaux</p>
+                        <button class="close-btn" id="close-popup1">Fermer</button>
                     </div>
                 </div>
-                    <div class="slider-container">
-                        <input type="range" min="0" max="100" value="0" step="1" class="slider" id="rangeSlider1">
-                        <div class="value-display" id="sliderValue1">0%</div>
-                    </div>
             </div>
-    
-            <div id="Fournisseurs" class='inputs'>
-                <div class='inputTitleContainer'>
-                    <h3 class='inputTitle'>Agriculture raisonnée et contrats longs</h3>
-                    <button id="b2">?</button>
-                    <div id="popup2" class="popup-overlay">
-                        <div class="popup-content">
-                            <h2>Agriculture raisonnée et contrats longs</h2>
-                            <p>Vous accompagnez vos fournisseurs dans leur transition vers une agriculture plus raisonnée et signez des partenariats long terme leur assurant une juste rémunération</p>
-                            <button class="close-btn" id="close-popup2">Fermer</button>
-                        </div>
-                    </div>
-                </div>
-                    <div class="slider-container">
-                        <input type="range" min="0" max="100" value="0" step="1" class="slider" id="rangeSlider2">
-                        <div class="value-display" id="sliderValue2">0%</div>
-                    </div>
-            </div>
-    
-            <div id="PackagingTransport" class='inputs'>
-                <div class='inputTitleContainer'>
-                    <h3 class='inputTitle'>Décarbonation du transport et éco-packaging</h3>
-                    <button id="b3">?</button>
-                    <div id="popup3" class="popup-overlay">
-                        <div class="popup-content">
-                            <h2>Décarbonation du transport et éco-packaging</h2>
-                            <p>Vous optimisez votre chaine logistique en favorisant le fret ferroviaire. Pour les packagings, vous favorisez la consigne et l’éco-conception</p>
-                            <button class="close-btn" id="close-popup3">Fermer</button>
-                        </div>
-                    </div>
-                </div>
                 <div class="slider-container">
-                    <input type="range" min="0" max="100" value="0" step="1" class="slider" id="rangeSlider3">
-                    <div class="value-display" id="sliderValue3">0%</div>
+                    <input type="range" min="0" max="100" value="0" step="1" class="slider" id="rangeSlider1">
+                    <div class="value-display" id="sliderValue1">0%</div>
                 </div>
-            </div>
-            
-            <div id="Redirection" class='inputs'>
-                <div class='inputTitleContainer'>
-                    <h3 class='inputTitle'>Transition vers le végétal</h3>
-                    <button id="b4">?</button>
-                    <div id="popup4" class="popup-overlay">
-                        <div class="popup-content">
-                            <h2>Transition vers le végétal</h2>
-                            <p>Vous réduisez la part de protéines animale dans vos produits et investissez en R&D dans des substituts «sains et végétariens»</p>
-                            <button class="close-btn" id="close-popup4">Fermer</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="slider-container">
-                    <input type="range" min="0" max="100" value="0" step="1" class="slider" id="rangeSlider4">
-                    <div class="value-display" id="sliderValue4">0%</div>
-                </div>
-            </div>
         </div>
-    
-        <div class="visuals">
-          <div class="treso-container">
-            <div class="euro-logo" id="euroLogo">€</div>
-            <div class="treso-fill" id="tresoEtat"></div>
-          </div>
-          <div class="circle"> 
-                <div class="circleRCA" id='circleRCA'>   
-                    <div class='circleValue' id="RCA">0%</div>
-                    <div class='circleLegende'>Chiffre d'affaires</div>
+
+        <div id="Fournisseurs" class='inputs'>
+            <div class='inputTitleContainer'>
+                <h3 class='inputTitle'>Agriculture raisonnée et contrats longs</h3>
+                <button id="b2">?</button>
+                <div id="popup2" class="popup-overlay">
+                    <div class="popup-content">
+                        <h2>Agriculture raisonnée et contrats longs</h2>
+                        <p>Vous accompagnez vos fournisseurs dans leur transition vers une agriculture plus raisonnée et signez des partenariats long terme leur assurant une juste rémunération</p>
+                        <button class="close-btn" id="close-popup2">Fermer</button>
+                    </div>
                 </div>
-                <div class="circleREBE" id='circleREBE'>   
-                    <div class='circleValue' id="REBE">0%</div>
-                    <div class='circleLegende'>EBE</div>
+            </div>
+                <div class="slider-container">
+                    <input type="range" min="0" max="100" value="0" step="1" class="slider" id="rangeSlider2">
+                    <div class="value-display" id="sliderValue2">0%</div>
                 </div>
-              
-          </div>  
+        </div>
+
+        <div id="PackagingTransport" class='inputs'>
+            <div class='inputTitleContainer'>
+                <h3 class='inputTitle'>Décarbonation du transport et éco-packaging</h3>
+                <button id="b3">?</button>
+                <div id="popup3" class="popup-overlay">
+                    <div class="popup-content">
+                        <h2>Décarbonation du transport et éco-packaging</h2>
+                        <p>Vous optimisez votre chaine logistique en favorisant le fret ferroviaire. Pour les packagings, vous favorisez la consigne et l’éco-conception</p>
+                        <button class="close-btn" id="close-popup3">Fermer</button>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-container">
+                <input type="range" min="0" max="100" value="0" step="1" class="slider" id="rangeSlider3">
+                <div class="value-display" id="sliderValue3">0%</div>
+            </div>
         </div>
         
-        <div class="outputs-container">
-            <div class="outputs">
-              <div>Climat</div>
-              <div class="outputsRelative" id="RCO2">0%</div>
-              <div class="outputsAbsolute" id="ACO2">200 000 tCO2e</div>
+        <div id="Redirection" class='inputs'>
+            <div class='inputTitleContainer'>
+                <h3 class='inputTitle'>Transition vers le végétal</h3>
+                <button id="b4">?</button>
+                <div id="popup4" class="popup-overlay">
+                    <div class="popup-content">
+                        <h2>Transition vers le végétal</h2>
+                        <p>Vous réduisez la part de protéines animale dans vos produits et investissez en R&D dans des substituts «sains et végétariens»</p>
+                        <button class="close-btn" id="close-popup4">Fermer</button>
+                    </div>
+                </div>
             </div>
-            <div class="outputs">
-              <div>Biodiversité</div>
-              <div class="outputsRelative" id="RBiodiv">0%</div>
-              <div class="outputsAbsolute" id="ABiodiv">impact sur les sols</div>
+            <div class="slider-container">
+                <input type="range" min="0" max="100" value="0" step="1" class="slider" id="rangeSlider4">
+                <div class="value-display" id="sliderValue4">0%</div>
             </div>
-            <div class="outputs">
-              <div>Eau</div>
-              <div class="outputsRelative" id="REau">0%</div>
-              <div class="outputsAbsolute" id="AEau">1 500 000 m3</div>
+        </div>
+    </div>
+
+    <div class="visuals">
+      <div class="treso-container">
+        <div class="euro-logo" id="euroLogo">€</div>
+        <div class="treso-fill" id="tresoEtat"></div>
+      </div>
+      <div class="circle"> 
+            <div class="circleRCA" id='circleRCA'>   
+                <div class='circleValue' id="RCA">0%</div>
+                <div class='circleLegende'>Chiffre d'affaires</div>
             </div>
-            <div class="outputs"></div>
-            <div class="outputs">
-              <div>Fournisseurs</div>
-              <div class="outputsRelative" id="RFournisseurs">0%</div>
-              <div class="outputsAbsolute" id="AFournisseurs">sur les revenus</div>
+            <div class="circleREBE" id='circleREBE'>   
+                <div class='circleValue' id="REBE">0%</div>
+                <div class='circleLegende'>EBE</div>
             </div>
+          
+      </div>  
+    </div>
+    
+    <div class="outputs-container">
+        <div class="outputs">
+          <div>Climat</div>
+          <div class="outputsRelative" id="RCO2">0%</div>
+          <div class="outputsAbsolute" id="ACO2">200 000 tCO2e</div>
+        </div>
+        <div class="outputs">
+          <div>Biodiversité</div>
+          <div class="outputsRelative" id="RBiodiv">0%</div>
+          <div class="outputsAbsolute" id="ABiodiv">impact sur les sols</div>
+        </div>
+        <div class="outputs">
+          <div>Eau</div>
+          <div class="outputsRelative" id="REau">0%</div>
+          <div class="outputsAbsolute" id="AEau">1 500 000 m3</div>
+        </div>
+        <div class="outputs"></div>
+        <div class="outputs">
+          <div>Fournisseurs</div>
+          <div class="outputsRelative" id="RFournisseurs">0%</div>
+          <div class="outputsAbsolute" id="AFournisseurs">sur les revenus</div>
         </div>
     </div>
     <script>
@@ -552,6 +550,8 @@ function updateVariables(variables) {
 function updateCircle(variables) {
     const circleRCA = document.getElementById('circleRCA');
     const circleREBE = document.getElementById('circleREBE');
+    
+    //let max = circle.style.height;
     
     let valueRCA = variables[7]/100;
     let valueREBE = variables[9]/100;
