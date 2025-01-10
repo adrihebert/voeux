@@ -530,12 +530,12 @@ function updateVariables(variables) {
         if (elementId.startsWith('R')) {
             oldElement.textContent = `${value}%`;
         } else { if (elementId.startsWith('ACO2')){
-            oldElement.textContent = `${value} tCO2e`;
+            oldElement.textContent = `${Math.round(value/1000)} ktCO2e`;
         }
         else { if (elementId.startsWith('AEau')) {
             oldElement.textContent = `${Math.round(value*100/1000000)/100} Mm3`;
         } else {
-            oldElement.textContent = `${Math.round(value/1000)}`;
+            oldElement.textContent = `${value)}`;
                     }
                 }
             } 
