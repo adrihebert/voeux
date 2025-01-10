@@ -533,7 +533,7 @@ function updateVariables(variables) {
             oldElement.textContent = `${value} tCO2e`;
         }
         else { if (elementId.startsWith('AEau')) {
-            oldElement.textContent = `${value/1000000} Mm3`;
+            oldElement.textContent = `${Math.round(value*100/1000000)/100} Mm3`;
         } else {
             oldElement.textContent = `${value}`;
                     }
