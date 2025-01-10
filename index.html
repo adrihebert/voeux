@@ -383,7 +383,7 @@ body {
         <div class="outputs">
           <div>Climat</div>
           <div class="outputsRelative" id="RCO2">0%</div>
-          <div class="outputsAbsolute" id="ACO2">200 000 tCO2e</div>
+          <div class="outputsAbsolute" id="ACO2">200 ktCO2e</div>
         </div>
         <div class="outputs">
           <div>Biodiversité</div>
@@ -393,7 +393,7 @@ body {
         <div class="outputs">
           <div>Eau</div>
           <div class="outputsRelative" id="REau">0%</div>
-          <div class="outputsAbsolute" id="AEau">1,5 Mm3</div>
+          <div class="outputsAbsolute" id="AEau">1.5 Mm3</div>
         </div>
         <div class="outputs"></div>
         <div class="outputs">
@@ -535,7 +535,7 @@ function updateVariables(variables) {
         else { if (elementId.startsWith('AEau')) {
             oldElement.textContent = `${Math.round(value*100/1000000)/100} Mm3`;
         } else {
-            oldElement.textContent = `${value}`;
+            oldElement.textContent = `${Math.round(value/1000)}`;
                     }
                 }
             } 
