@@ -621,23 +621,23 @@ rangeSlider1.addEventListener('input', async function () {
         parseFloat(rangeSlider3.value),
         parseFloat(rangeSlider4.value)];
     const currentValue = currentInputs[0];
-    const newVariables = await callServer(...currentInputs);    
+    const newVariables = Object.values(await callServer(...currentInputs));    
     
     if (locked && currentValue<limitingValue) {
         rangeSlider1.value = limitingValue;
         sliderValue1.textContent = `${limitingValue}%`;
     } else {
         sliderValue1.textContent = `${currentValue}%`;
-        if (Math.round(Object.values(newVariables)[10]) <= Math.round(0)){
+        if (Math.round(newVariables[10]) <= Math.round(0)){
             locked = 1;
         } else{
             locked = 0;
         }
         lockedValue = [...currentInputs];
-        objectifs(Object.values(newVariables));
-        updateCircle(Object.values(newVariables));
-        updateGauge(Object.values(newVariables)[10]);
-        updateVariables(Object.values(newVariables));
+        objectifs(newVariables);
+        updateCircle(newVariables);
+        updateGauge(newVariables[10]);
+        updateVariables(newVariables);
         
         
     }
