@@ -628,7 +628,7 @@ rangeSlider1.addEventListener('input', async function () {
         sliderValue1.textContent = `${limitingValue}%`;
     } else {
         sliderValue1.textContent = `${currentValue}%`;
-        if (Math.round(newVariables.reserve) <= Math.round(0)){
+        if (Math.round(Object.values(newVariables)[10]) <= Math.round(0)){
             locked = 1;
         } else{
             locked = 0;
@@ -636,7 +636,7 @@ rangeSlider1.addEventListener('input', async function () {
         lockedValue = [...currentInputs];
         objectifs(Object.values(newVariables));
         updateCircle(Object.values(newVariables));
-        updateGauge(newVariables.reserve);
+        updateGauge(Object.values(newVariables)[10]);
         updateVariables(Object.values(newVariables));
         
         
