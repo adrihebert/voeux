@@ -643,14 +643,14 @@ rangeSlider1.addEventListener('input', async function () {
     }
 });
 
-rangeSlider2.addEventListener('input', function () {
+rangeSlider2.addEventListener('input', async function () {
     const limitingValue = lockedValue[1];
     const currentInputs = [parseFloat(rangeSlider1.value), 
         parseFloat(rangeSlider2.value),
         parseFloat(rangeSlider3.value),
         parseFloat(rangeSlider4.value)];
     const currentValue = currentInputs[1];
-    const newVariables = calculBackend(currentInputs[0],currentInputs[1],currentInputs[2],currentInputs[3]);
+    const newVariables = Object.values(await callServer(...currentInputs));
     
     if (locked && currentValue>limitingValue) {
         rangeSlider2.value = limitingValue;
@@ -670,14 +670,14 @@ rangeSlider2.addEventListener('input', function () {
     }
 });
 
-rangeSlider3.addEventListener('input', function () {
+rangeSlider3.addEventListener('input', async function () {
     const limitingValue = lockedValue[2];
     const currentInputs = [parseFloat(rangeSlider1.value), 
         parseFloat(rangeSlider2.value),
         parseFloat(rangeSlider3.value),
         parseFloat(rangeSlider4.value)];
     const currentValue = currentInputs[2];
-    const newVariables = calculBackend(currentInputs[0],currentInputs[1],currentInputs[2],currentInputs[3]);
+    const newVariables = Object.values(await callServer(...currentInputs)); 
     
     if (locked && currentValue>limitingValue) {
         rangeSlider3.value = limitingValue;
@@ -698,14 +698,14 @@ rangeSlider3.addEventListener('input', function () {
     }
 });
 
-rangeSlider4.addEventListener('input', function () {
+rangeSlider4.addEventListener('input', async function () {
     const limitingValue = lockedValue[3];
     const currentInputs = [parseFloat(rangeSlider1.value), 
         parseFloat(rangeSlider2.value),
         parseFloat(rangeSlider3.value),
         parseFloat(rangeSlider4.value)];
     const currentValue = currentInputs[3];
-    const newVariables = calculBackend(currentInputs[0],currentInputs[1],currentInputs[2],currentInputs[3]);
+    const newVariables = Object.values(await callServer(...currentInputs)); 
     
     if (locked && currentValue>limitingValue) {
         rangeSlider4.value = limitingValue;
