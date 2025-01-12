@@ -443,31 +443,75 @@ body {
 
 
 // Calcul
-async function callServer(rangeSlider1, rangeSlider2, rangeSlider3, rangeSlider4) {
-    try {
-        const response = await fetch('calculBackend.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                rangeSlider1,
-                rangeSlider2,
-                rangeSlider3,
-                rangeSlider4,
-            }),
-        });
 
-        if (!response.ok) {
-            throw new Error('Erreur lors de l\'appel au backend');
-        }
 
-        return await response.json();
-    } catch (error) {
-        console.error('Erreur:', error);
-        return null;
-    }
-};
+function calculBackend(rangeSlider1, rangeSlider2, rangeSlider3, rangeSlider4) {
+    rangeSlider1 = rangeSlider1 / 100;
+    rangeSlider2 = rangeSlider2 / 100;
+    rangeSlider3 = rangeSlider3 / 100;
+    rangeSlider4 = rangeSlider4 / 100;
+
+    
+    const C2 = -0.30;
+    const C3 = -0.20;
+    const C4 = -0.40;
+ 
+    const B2 = -0.30;
+    const B3 = -0.13;
+    const B4 = -0.30;
+ 
+    const E2 = -0.15;
+    const E3 = -0.15;
+    const E4 = -0.25;
+    
+    const F2 = 0.30;
+    const F3 = 0.0;
+    const F4 = 0.0;
+ 
+    const CA2 = 0.15;
+    const CA3 = 0.1;
+    const CA4 = -0.05;
+ 
+    const EBE2 = -0.15;
+    const EBE3 = -0.05;
+    const EBE4 = 0.1;
+ 
+    const Dette2 = 145;
+    const Dette3 = 110;
+    const Dette4 = 135;
+ 
+    // Calculs
+    const CA = 500 * (1 + rangeSlider1 + CA2 * rangeSlider2 + CA3 * rangeSlider3 + CA4 * rangeSlider4);
+    const RCA = 100*(rangeSlider1 + (CA2 * rangeSlider2) + (CA3 * rangeSlider3) + (CA4 * rangeSlider4));
+    const EBE = (500 / 14) * (1 + rangeSlider1 + EBE2 * rangeSlider2 + EBE3 * rangeSlider3 + EBE4 * rangeSlider4);
+    const REBE = 100*(rangeSlider1 + (EBE2 * rangeSlider2) + (EBE3 * rangeSlider3) + (EBE4 * rangeSlider4));
+    const reserve = 200 * (1 + rangeSlider1) - (Dette2 * rangeSlider2 + Dette3 * rangeSlider3 + Dette4 * rangeSlider4);
+    const ACO2 = 200000 * (1 + rangeSlider1 + C2 * rangeSlider2 + C3 * rangeSlider3 + C4 * rangeSlider4);
+    const RCO2 = 100*(rangeSlider1 + C2 * rangeSlider2 + C3 * rangeSlider3 + C4 * rangeSlider4);
+    //const ABiodiv = 100 * (1 + rangeSlider1 + B2 * rangeSlider2 + B3 * rangeSlider3 + B4 * rangeSlider4);
+    const RBiodiv = 100*(rangeSlider1 + B2 * rangeSlider2 + B3 * rangeSlider3 + B4 * rangeSlider4);
+    const AEau = 1500000 * (1 + rangeSlider1 + E2 * rangeSlider2 + E3 * rangeSlider3 + E4 * rangeSlider4);
+    const REau = 100*(rangeSlider1 + E2 * rangeSlider2 + E3 * rangeSlider3 + E4 * rangeSlider4);
+    //const AFournisseurs = 100 * (1 + rangeSlider1 + F2 * rangeSlider2 + F3 * rangeSlider3 + F4 * rangeSlider4);
+    const RFournisseurs = 100*(F2 * rangeSlider2 + F3 * rangeSlider3 + F4 * rangeSlider4);
+
+    // Tableau des résultats
+    return [
+        Math.round(RCO2),
+        Math.round(ACO2),
+        Math.round(RBiodiv),
+        //Math.round(ABiodiv),
+        Math.round(REau),
+        Math.round(AEau),
+        Math.round(RFournisseurs),
+        //Math.round(AFournisseurs),
+        Math.round(CA),
+        Math.round(RCA),
+        Math.round(EBE),
+        Math.round(REBE),
+        Math.round(reserve)
+    ];
+}
 
 // Update des valeurs
 
@@ -612,16 +656,17 @@ const sliderValue4 = document.getElementById('sliderValue4');
 
 
 let locked = 1;
-let lockedValue = [0,100,100,100];
+let lockedValue = [0,100,80,90];
 
-rangeSlider1.addEventListener('input', async function () {
+rangeSlider1.addEventListener('input', function () {
     const limitingValue = lockedValue[0];
     const currentInputs = [parseFloat(rangeSlider1.value), 
         parseFloat(rangeSlider2.value),
         parseFloat(rangeSlider3.value),
         parseFloat(rangeSlider4.value)];
     const currentValue = currentInputs[0];
-    const newVariables = Object.values(await callServer(...currentInputs));    
+    const newVariables = calculBackend(currentInputs[0],currentInputs[1],currentInputs[2],currentInputs[3]);
+    
     
     if (locked && currentValue<limitingValue) {
         rangeSlider1.value = limitingValue;
@@ -643,14 +688,14 @@ rangeSlider1.addEventListener('input', async function () {
     }
 });
 
-rangeSlider2.addEventListener('input', async function () {
+rangeSlider2.addEventListener('input', function () {
     const limitingValue = lockedValue[1];
     const currentInputs = [parseFloat(rangeSlider1.value), 
         parseFloat(rangeSlider2.value),
         parseFloat(rangeSlider3.value),
         parseFloat(rangeSlider4.value)];
     const currentValue = currentInputs[1];
-    const newVariables = Object.values(await callServer(...currentInputs));
+    const newVariables = calculBackend(currentInputs[0],currentInputs[1],currentInputs[2],currentInputs[3]);
     
     if (locked && currentValue>limitingValue) {
         rangeSlider2.value = limitingValue;
@@ -670,14 +715,14 @@ rangeSlider2.addEventListener('input', async function () {
     }
 });
 
-rangeSlider3.addEventListener('input', async function () {
+rangeSlider3.addEventListener('input', function () {
     const limitingValue = lockedValue[2];
     const currentInputs = [parseFloat(rangeSlider1.value), 
         parseFloat(rangeSlider2.value),
         parseFloat(rangeSlider3.value),
         parseFloat(rangeSlider4.value)];
     const currentValue = currentInputs[2];
-    const newVariables = Object.values(await callServer(...currentInputs)); 
+    const newVariables = calculBackend(currentInputs[0],currentInputs[1],currentInputs[2],currentInputs[3]);
     
     if (locked && currentValue>limitingValue) {
         rangeSlider3.value = limitingValue;
@@ -698,14 +743,14 @@ rangeSlider3.addEventListener('input', async function () {
     }
 });
 
-rangeSlider4.addEventListener('input', async function () {
+rangeSlider4.addEventListener('input', function () {
     const limitingValue = lockedValue[3];
     const currentInputs = [parseFloat(rangeSlider1.value), 
         parseFloat(rangeSlider2.value),
         parseFloat(rangeSlider3.value),
         parseFloat(rangeSlider4.value)];
     const currentValue = currentInputs[3];
-    const newVariables = Object.values(await callServer(...currentInputs)); 
+    const newVariables = calculBackend(currentInputs[0],currentInputs[1],currentInputs[2],currentInputs[3]);
     
     if (locked && currentValue>limitingValue) {
         rangeSlider4.value = limitingValue;
