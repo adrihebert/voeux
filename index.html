@@ -467,7 +467,7 @@ async function callServer(rangeSlider1, rangeSlider2, rangeSlider3, rangeSlider4
         console.error('Erreur:', error);
         return null;
     }
-}
+};
 
 // Update des valeurs
 
@@ -614,7 +614,7 @@ const sliderValue4 = document.getElementById('sliderValue4');
 let locked = 1;
 let lockedValue = [0,100,80,90];
 
-rangeSlider1.addEventListener('input', function () {
+rangeSlider1.addEventListener('input', async function () {
     const limitingValue = lockedValue[0];
     const currentInputs = [parseFloat(rangeSlider1.value), 
         parseFloat(rangeSlider2.value),
