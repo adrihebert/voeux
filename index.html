@@ -612,7 +612,7 @@ function updateVariables(variables) {
 
         if (elementId.startsWith('RC') || elementId.startsWith('RE')) {
             // Mettre à jour les éléments avec un pourcentage
-            element.textContent = `${value}%`;
+            element.textContent = value >= 0 ? `+${value}%` : `${value}%`;
         } else if (elementId.startsWith('RBiodiv') || elementId.startsWith('RFournisseurs')) {
             // Ajouter un "+" ou "-" en fonction de la valeur
             element.textContent = value >= 0 ? `+${value}%` : `${value}%`;
