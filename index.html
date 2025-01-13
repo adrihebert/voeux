@@ -609,13 +609,13 @@ function updateVariables(variables) {
 
         if (elementId.startsWith('RC') || elementId.startsWith('RE')) {
             oldElement.textContent = `${value}%`;
-        } else if (elementId.startsWith('RBiodiv') || elementId.startsWith('RFournisseurs') ) {
+        } else {if (elementId.startsWith('RBiodiv') || elementId.startsWith('RFournisseurs') ) {
             if (value>=0) {
                 oldElement.textContent = `+${value}%`;
             } else {
                 oldElement.textContent = `-${value}%`;
             }
-        } else if (elementId.startsWith('ACO2')){
+        } else {if (elementId.startsWith('ACO2')){
             oldElement.textContent = `${Math.round(value/1000)} ktCO2e`;
         }
         else { if (elementId.startsWith('AEau')) {
@@ -626,6 +626,8 @@ function updateVariables(variables) {
                 }
             } 
         }
+    }
+}
 
 // Update des cercles 
 
