@@ -39,20 +39,24 @@ body {
 .intro-container {;
     width = 100%;
 }
-    
+
 #intro-container1 {
-    background-color: #602244;
-    color : #ffffff;
-    width = 100%;
+background-color: #602244; /* Couleur de fond, modifiez à votre convenance */
+color : #ffffff;
+width: 100vw; /* S'étend sur toute la largeur de la fenêtre */
+display: flex; /* Permet de centrer son contenu */
+justify-content: center; /* Centre le contenu horizontalement */
+}
+
+.intro1 {
+max-width: 500px; /* Limite la largeur à 500px */
+width: 100%; /* S'assure qu'il ne dépasse pas cette largeur */
+padding: 20px; /* Ajoutez de l'espace intérieur si nécessaire */
+box-sizing: border-box; /* Inclut le padding dans la largeur totale */
 }
 
 #intro-container2 {
     background-color: #f9f4f1;
-}
-
-.intro1 {
-    max-width: 500px;
-    text-align: justify;
 }
 
 .intro2 {
