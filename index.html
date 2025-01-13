@@ -102,8 +102,8 @@ align-items: center;
 
 ul {
   text-align: left;
-  background-color : #f1f1f1;
-  border-radius : 5px;
+  //background-color : #f1f1f1;
+  //border-radius : 5px;
 }
     
 .tab-container {
@@ -508,7 +508,7 @@ ul {
         <div class="outputs">
           <div>Biodiversité</div>
           <div class="outputsRelative" id="RBiodiv">0%</div>
-          <div class="outputsAbsolute" id="ABiodiv">impact sur les sols</div>
+          <div class="outputsAbsolute" id="ABiodiv">d'impact sur les sols</div>
         </div>
         <div class="outputs">
           <div>Eau</div>
@@ -519,7 +519,7 @@ ul {
         <div class="outputs">
           <div>Fournisseurs</div>
           <div class="outputsRelative" id="RFournisseurs">0%</div>
-          <div class="outputsAbsolute" id="AFournisseurs">sur les revenus</div>
+          <div class="outputsAbsolute" id="AFournisseurs">de revenu</div>
         </div>
     </div>
     <script>
@@ -609,7 +609,13 @@ function updateVariables(variables) {
 
         if (elementId.startsWith('R')) {
             oldElement.textContent = `${value}%`;
-        } else { if (elementId.startsWith('ACO2')){
+        } else if (elementId.startsWith('RBiodiv') || elementId.startsWith('RFournisseurs') ) {
+            if (value>=0) {
+                oldElement.textContent = `+${value}%`;
+            } else {
+                oldElement.textContent = `-${value}%`;
+            }
+        } else if (elementId.startsWith('ACO2')){
             oldElement.textContent = `${Math.round(value/1000)} ktCO2e`;
         }
         else { if (elementId.startsWith('AEau')) {
@@ -620,7 +626,6 @@ function updateVariables(variables) {
                 }
             } 
         }
-    }
 
 // Update des cercles 
 
