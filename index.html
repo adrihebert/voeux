@@ -75,6 +75,7 @@ align-items: center;
 #focale {
     width : 200px;
     filter : invert(43%) sepia(64%) saturate(6075%) hue-rotate(7deg) brightness(100%) contrast(87%);
+    border-right: 2px solid white; 
 }
 
 #mirliton {
@@ -270,7 +271,6 @@ align-items: center;
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, rgba(255,72,0,1) 0%, rgba(250,255,64,1) 50%, rgba(0,167,8,1) 100%);
-    /* background-color: #4CAF50; */
     border-radius: 10px;
     position: absolute;
     left: 0;
@@ -300,7 +300,7 @@ align-items: center;
     color: #000; 
     margin-top: 10px;
     display: flex;
-    flex-flow: row wrap; /* Permet l'enroulement si nécessaire */
+    flex-flow: row wrap; 
     justify-content: space-around;
 }
 
@@ -309,13 +309,13 @@ align-items: center;
     flex-direction: column;
     align-items: center; 
     text-align: center;
-    gap: 2px; /* Ajoute de l'espace entre les éléments */
+    gap: 2px; 
 }
 
 .outputsRelative, .outputsAbsolute {
-    display: inline-flex; /* Alignement en ligne */
-    align-items: baseline; /* Aligne le bas des textes */
-    gap: 2px; /* Ajoute de l'espace entre les deux */
+    display: inline-flex; 
+    align-items: baseline; 
+    gap: 2px; 
 }
 
 .outputsRelative {
@@ -326,12 +326,12 @@ align-items: center;
 
 .outputsAbsolute {
     font-size: 1em;
-    display: inline-block; /* Aligne en ligne avec outputsRelative */
+    display: inline-block; 
 }
 
 .outputs:nth-child(4) {
-    border-right: 2px solid black; /* Add a vertical line */
-    margin-right: 2px; /* Optionnel : Espace après la ligne */
+    border-right: 2px solid black; 
+    margin-right: 2px; 
 }
 </style>
 </head> 
