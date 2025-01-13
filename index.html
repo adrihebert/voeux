@@ -602,29 +602,29 @@ function updateVariables(variables) {
     document.getElementById(elementIds[7]).textContent = `${variables[7]}%`;
     document.getElementById(elementIds[9]).textContent = `${variables[9]}%`;
 
-    for (let index = 0; index < variables.length-1; index++) {
+    for (let index = 0; index < variables.length; index++) {
         const value = variables[index];
         const elementId = elementIds[index];
-        const oldElement = document.getElementById(elementId);
+        const element = document.getElementById(elementId);
+
+        // Vérifier si l'élément existe dans le DOM
+        if (!element) continue;
 
         if (elementId.startsWith('RC') || elementId.startsWith('RE')) {
-            oldElement.textContent = `${value}%`;
-        } else {if (elementId.startsWith('RBiodiv') || elementId.startsWith('RFournisseurs') ) {
-            if (value>=0) {
-                oldElement.textContent = `+${value}%`;
-            } else {
-                oldElement.textContent = `-${value}%`;
-            }
-        } else {if (elementId.startsWith('ACO2')){
-            oldElement.textContent = `${Math.round(value/1000)} ktCO2e`;
-        }
-        else { if (elementId.startsWith('AEau')) {
-            oldElement.textContent = `${Math.round(value*100/1000000)/100} Mm3`;
+            // Mettre à jour les éléments avec un pourcentage
+            element.textContent = `${value}%`;
+        } else if (elementId.startsWith('RBiodiv') || elementId.startsWith('RFournisseurs')) {
+            // Ajouter un "+" ou "-" en fonction de la valeur
+            element.textContent = value >= 0 ? `+${value}%` : `${value}%`;
+        } else if (elementId.startsWith('ACO2')) {
+            // Conversion en kilo-tonnes de CO2e
+            element.textContent = `${Math.round(value / 1000)} ktCO2e`;
+        } else if (elementId.startsWith('AEau')) {
+            // Conversion en millions de m3 (arrondi à 2 décimales)
+            element.textContent = `${(value / 1000000).toFixed(2)} Mm3`;
         } else {
-            oldElement.textContent = `${value}`;
-                    }
-                }
-            } 
+            // Par défaut, afficher la valeur brute
+            element.textContent = `${value}`;
         }
     }
 }
