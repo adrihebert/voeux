@@ -45,6 +45,7 @@ background-color: #602244; /* Couleur de fond, modifiez à votre convenance */
 color : #ffffff;
 width: 100vw; /* S'étend sur toute la largeur de la fenêtre */
 display: flex; /* Permet de centrer son contenu */
+flex-direction: column;
 justify-content: center; /* Centre le contenu horizontalement */
 }
 
@@ -53,6 +54,7 @@ max-width: 500px; /* Limite la largeur à 500px */
 width: 100%; /* S'assure qu'il ne dépasse pas cette largeur */
 padding: 20px; /* Ajoutez de l'espace intérieur si nécessaire */
 box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+text-align: center;
 }
 
 #intro-container2 {
@@ -323,8 +325,8 @@ box-sizing: border-box; /* Inclut le padding dans la largeur totale */
 <body> 
     <div id="intro-container">
         <div id="intro-container1">
-            <div class="bold">Et si en 2025, nous changions de focale …</div>
             <div class='intro1' id='intro1'>
+                <p class="bold">Et si en 2025, nous changions de focale …</p>
                 <p>Comment réorienter nos modèles économiques, donner vie à un autre récit autour de la valeur si nos outils de gestion se concentrent uniquement sur une appréhension de la performance financière de nos modèles entrepreneuriaux ?</p>
                 <p>
                 Dans le même temps, à quoi bon prendre des engagements environnementaux et sociétaux ambitieux si ces derniers ne sont pas pensés en corrélation avec les capacités financières de l’entreprise : trésorerie et capacité d’endettement ? 
@@ -337,11 +339,12 @@ box-sizing: border-box; /* Inclut le padding dans la largeur totale */
                 </p>
                 <p>
                 Nous vous proposons ci-après de ‘jouer’ avec une version très simplifiée de l’un d’entre eux.</p> 
+                <div class="spacing">
+                    <p>*</p>
+                    <p>* &nbsp; &nbsp; &nbsp; *</p>
+                </div>
             </div>
-            <div class="spacing">
-                <p>*</p>
-                <p>* &nbsp; &nbsp; &nbsp; *</p>
-            </div>
+            
         </div>
         <div id="intro-container2">
             <div class='intro2' id='intro2'>
