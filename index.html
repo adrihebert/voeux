@@ -407,47 +407,7 @@ body {
     </div>
     <script>
       
-
-// Appel au serveur
-
-/*function callServer(rangeSlider1, rangeSlider2, rangeSlider3, rangeSlider4) {
-    /*try {
-        // Préparer la requête avec les données nécessaires
-        const response = await fetch('/wp-json/calcul/v1/compute', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                rangeSlider1,
-                rangeSlider2,
-                rangeSlider3,
-                rangeSlider4,
-            }),
-        });
-
-        // Vérifier si la réponse est correcte
-        if (!response.ok) {
-            const error = await response.json();
-            console.error('Erreur du backend:', error.error || 'Requête invalide');
-            return;
-        }
-
-        // Extraire les résultats de la réponse
-        const data = await response.json();
-        console.log('Résultats du calcul:', data);
-
-        // Utiliser les résultats ici
-        return data;
-    } 
-    catch (error) {
-        console.error('Erreur de communication avec le serveur:', error);
-    }
-};*/
-
-
 // Calcul
-
 
 function calculBackend(rangeSlider1, rangeSlider2, rangeSlider3, rangeSlider4) {
     rangeSlider1 = rangeSlider1 / 100;
