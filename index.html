@@ -25,6 +25,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
@@ -36,12 +37,16 @@ body {
     font-family : FuturaPTDemi;
 }
 
-.intro-container {;
+#intro-container {
     width = 100%;
+    display: flex; /* Permet de centrer son contenu */
+    flex-direction: column;
+    justify-content: center; /* Centre le contenu horizontalement */
+    align-items: center;
 }
 
 #intro-container1 {
-background-color: #602244; /* Couleur de fond, modifiez à votre convenance */
+background-color: #622b59; /* Couleur de fond, modifiez à votre convenance */
 color : #ffffff;
 width: 100vw; /* S'étend sur toute la largeur de la fenêtre */
 display: flex; /* Permet de centrer son contenu */
@@ -49,7 +54,7 @@ flex-direction: column;
 justify-content: center; /* Centre le contenu horizontalement */
 }
 
-.intro1 {
+.intro1, .intro2 {
 max-width: 500px; /* Limite la largeur à 500px */
 width: 100%; /* S'assure qu'il ne dépasse pas cette largeur */
 padding: 20px; /* Ajoutez de l'espace intérieur si nécessaire */
@@ -57,17 +62,13 @@ box-sizing: border-box; /* Inclut le padding dans la largeur totale */
 text-align: center;
 }
 
+
 #intro-container2 {
-    background-color: #f9f4f1;
-}
-
-.intro2 {
-    max-width: 500px;
-    text-align: justify;
-}
-
-.spacing {
-    text-align: center;
+background-color: #f9f4f1; /* Couleur de fond, modifiez à votre convenance */
+width: 100vw; /* S'étend sur toute la largeur de la fenêtre */
+display: flex; /* Permet de centrer son contenu */
+flex-direction: column;
+justify-content: center; /* Centre le contenu horizontalement */
 }
     
     
