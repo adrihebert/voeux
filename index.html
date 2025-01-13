@@ -607,7 +607,7 @@ function updateVariables(variables) {
         const elementId = elementIds[index];
         const oldElement = document.getElementById(elementId);
 
-        if (elementId.startsWith('R')) {
+        if (elementId.startsWith('RC') || elementId.startsWith('RE')) {
             oldElement.textContent = `${value}%`;
         } else if (elementId.startsWith('RBiodiv') || elementId.startsWith('RFournisseurs') ) {
             if (value>=0) {
