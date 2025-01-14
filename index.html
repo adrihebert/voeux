@@ -9,15 +9,15 @@
 
 @font-face {
     font-family: FuturaPTBook;
-    src: url("./FuturaPTBook.otf") format("opentype"),
-        url("./FuturaPTBook.woff") format("woff"),
-        url("./FuturaPTBook.ttf") format("truetype");
+    src: url("./VoeuxContents/FuturaPTBook.otf") format("opentype"),
+        url("./VoeuxContents/FuturaPTBook.woff") format("woff"),
+        url("./VoeuxContents/FuturaPTBook.ttf") format("truetype");
 }
 @font-face {
     font-family: FuturaPTDemi;
-    src: url("./FuturaPTDemi.otf") format("opentype"),
-        url("./FuturaPTDemi.woff") format("woff"),
-        url("./FuturaPTDemi.ttf") format("truetype");
+    src: url("./VoeuxContents/FuturaPTDemi.otf") format("opentype"),
+        url("./VoeuxContents/FuturaPTDemi.woff") format("woff"),
+        url("./VoeuxContents/FuturaPTDemi.ttf") format("truetype");
 }
     
 body {
@@ -113,6 +113,9 @@ ul {
 }
     
 .tab-container {
+    background-color: #622b59; 
+    color : #ffffff;
+    width: 100vw;
     flex : 1;
     display : flex;
     flex-direction: column;
@@ -233,7 +236,7 @@ ul {
 }
 
 .circle{
-    position: relative; /* Pour permettre un positionnement relatif des enfants */
+    position: relative; 
     height : 300px;
     display: flex;
     justify-content: center; 
@@ -369,10 +372,10 @@ ul {
     <div id="intro-container">
         <div id="intro-container1">
             <div class='intro1' id='intro1'>
-                <img id="Prophil" src="PROPHIL-logo_RVB_blanc.svg">
+                <img id="Prophil" src="./VoeuxContents/PROPHIL-logo_RVB_blanc.svg">
                 <div id="banniere">
                     <p class="bold" id="title">Et si en <h id="2025">2025</h>,<br> nous changions de focale…</p>
-                    <div id="focale-container"><img id="focale" src="focale.png"></div>
+                    <div id="focale-container"><img id="focale" src="./VoeuxContents/focale.png"></div>
                 </div>
                 <p>Comment réorienter nos modèles économiques, donner vie à un autre récit autour de la valeur si nos outils de gestion se concentrent uniquement sur une appréhension de la performance financière de nos modèles entrepreneuriaux ?</p>
                 <p>
@@ -395,7 +398,7 @@ ul {
         </div>
         <div id="intro-container2">
             <div class='intro2' id='intro2'>
-                <img id="mirliton" src="mirliton.png">
+                <img id="mirliton" src="./VoeuxContents/mirliton.png">
                 <p>Bienvenue chez Mirliton (entreprise fictive créée et animée par le cabinet Prophil), objet d’une <a href="https://www.youtube.com/watch?v=pOfxqVydfAI" target="_blank">AG du futur en février 2024</a>.</p>
                 <p>
                 Fondée en 1952 par une jeune agronome bretonne et cotée en Bourse depuis 2002, Mirliton est une entreprise familiale française emblématique, connue pour ses petits pots bébés et ses soupes de légumes. Grâce à ses 11 000 collaborateurs implantés dans 10 pays, Mirliton a réalisé un chiffre d’affaires, en 2024, de 2,5 milliards d’euros.</p>
@@ -512,26 +515,26 @@ ul {
     
     <div class="outputs-container">
         <div class="outputs">
-          <img class="picto" src="Climat.svg">
+          <img class="picto" src="./VoeuxContents/Climat.svg">
           <div>Climat</div>
           <div class="outputsRelative" id="RCO2">0%</div>
           <div class="outputsAbsolute" id="ACO2">200 ktCO2e</div>
         </div>
         <div class="outputs">
-          <img class="picto" src="Biodiv.svg">
+          <img class="picto" src="./VoeuxContents/Biodiv.svg">
           <div>Biodiversité</div>
           <div class="outputsRelative" id="RBiodiv">0%</div>
           <div class="outputsAbsolute" id="ABiodiv">d'impact sur les sols</div>
         </div>
         <div class="outputs">
-          <img class="picto" src="Eau.svg">
+          <img class="picto" src="./VoeuxContents/Eau.svg">
           <div>Eau</div>
           <div class="outputsRelative" id="REau">0%</div>
           <div class="outputsAbsolute" id="AEau">1.5 Mm3</div>
         </div>
         <div class="outputs"></div>
         <div class="outputs">
-          <img class="picto" src="Fournisseurs.svg">
+          <img class="picto" src="./VoeuxContents/Fournisseurs.svg">
           <div>Fournisseurs</div>
           <div class="outputsRelative" id="RFournisseurs">0%</div>
           <div class="outputsAbsolute" id="AFournisseurs">de revenu</div>
