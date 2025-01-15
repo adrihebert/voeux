@@ -572,10 +572,6 @@ async function fetchMatrices() {
 document.addEventListener('DOMContentLoaded', fetchMatrices);
 
 function calculBackend(rangeSlider1, rangeSlider2, rangeSlider3, rangeSlider4) {
-        if (coefficients.length === 0 || constants.length === 0) {
-            console.error('Matrices not loaded!');
-            return [];
-        }
 
         rangeSlider1 = rangeSlider1 / 100;
         rangeSlider2 = rangeSlider2 / 100;
