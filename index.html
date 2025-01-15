@@ -556,30 +556,39 @@ ul {
     <script>
       
 // Calcul
+// Matrice des coefficients et des constantes
+    const CF = [
+        [-0.30, -0.20, -0.40], // C
+        [-0.30, -0.13, -0.30], // B
+        [-0.15, -0.15, -0.25], // E
+        [0.30, 0.0, 0.0],      // F
+        [0.15, 0.1, -0.05],    // CA
+        [-0.15, -0.05, 0.1],   // EBE
+        [145, 110, 135]        // Dette
+    ];
 
-const CF = [
-    [-0.30, -0.20, -0.40], // C
-    [-0.30, -0.13, -0.30], // B
-    [-0.15, -0.15, -0.25], // E
-    [0.30, 0.0, 0.0],      // F
-    [0.15, 0.1, -0.05],    // CA
-    [-0.15, -0.05, 0.1],   // EBE
-    [145, 110, 135]        // Dette
+    const CT = [
+        500,    // Constante pour CA
+        100,    // Constante pour RCA et RCO2
+        500/14, // Constante pour EBE
+        100,    // Constante pour REBE
+        200,    // Constante pour reserve
+        200000, // Constante pour ACO2
+        100,    // Constante pour RFournisseurs
+        100,    // Constante pour RBiodiv
+        1500000,//
+        100     // Constante pour REau
 ];
 
-    // Matrice des constantes fixes
-const CT = [
-    500,    // Constante pour CA
-    100,    // Constante pour RCA et RCO2
-    500/14, // Constante pour EBE
-    100,    // Constante pour REBE
-    200,    // Constante pour reserve
-    200000, // Constante pour ACO2
-    100,    // Constante pour RFournisseurs
-    100,    // Constante pour RBiodiv
-    1500000,// Constante pour AEau
-    100     // Constante pour REau
-];
+let CF = [];
+let CT = [];    
+
+async function fetchM() {
+    const response = await fetch('m.php');
+    const data = await response.json();
+    CF = data.cf;
+    CT = data.ct;
+}        
 
 function calculBackend(rangeSlider1, rangeSlider2, rangeSlider3, rangeSlider4) {
     rangeSlider1 = rangeSlider1 / 100;
