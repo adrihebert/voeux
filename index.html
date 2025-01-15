@@ -573,8 +573,7 @@ async function fetchM() {
     }
 }
 
-// Appelle la fonction pour charger les données
-fetchM();
+
 
 // Fonction de calcul
 function calculBackend(rangeSlider1, rangeSlider2, rangeSlider3, rangeSlider4) {
@@ -946,7 +945,7 @@ popup4.addEventListener('click', (event) => {
 });
 
 // Initialisation
-
+fetchM();
 const newVariables = calculBackend(
     parseFloat(rangeSlider1.value),
     parseFloat(rangeSlider2.value),
