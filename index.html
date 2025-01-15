@@ -557,7 +557,7 @@ ul {
       
 // Calcul
 
-const coefficients = [
+const CF = [
     [-0.30, -0.20, -0.40], // C
     [-0.30, -0.13, -0.30], // B
     [-0.15, -0.15, -0.25], // E
@@ -568,7 +568,7 @@ const coefficients = [
 ];
 
     // Matrice des constantes fixes
-const constantes = [
+const CT = [
     500,    // Constante pour CA
     100,    // Constante pour RCA et RCO2
     500/14, // Constante pour EBE
@@ -588,36 +588,35 @@ function calculBackend(rangeSlider1, rangeSlider2, rangeSlider3, rangeSlider4) {
     rangeSlider4 = rangeSlider4 / 100;
 
     // Calculs
-    const CA = constantes[0] * (1 + rangeSlider1 + coefficients[4][0] * rangeSlider2 + coefficients[4][1] * rangeSlider3 + coefficients[4][2] * rangeSlider4);
-    const RCA = constantes[1] * (rangeSlider1 + coefficients[4][0] * rangeSlider2 + coefficients[4][1] * rangeSlider3 + coefficients[4][2] * rangeSlider4);
-    const EBE = constantes[2] * (1 + rangeSlider1 + coefficients[5][0] * rangeSlider2 + coefficients[5][1] * rangeSlider3 + coefficients[5][2] * rangeSlider4);
-    const REBE = constantes[3] * (rangeSlider1 + coefficients[5][0] * rangeSlider2 + coefficients[5][1] * rangeSlider3 + coefficients[5][2] * rangeSlider4);
-    const reserve = constantes[4] * (1 + rangeSlider1) - (coefficients[6][0] * rangeSlider2 + coefficients[6][1] * rangeSlider3 + coefficients[6][2] * rangeSlider4);
-    const ACO2 = constantes[5] * (1 + rangeSlider1 + coefficients[0][0] * rangeSlider2 + coefficients[0][1] * rangeSlider3 + coefficients[0][2] * rangeSlider4);
-    const RCO2 = constantes[1] * (rangeSlider1 + coefficients[0][0] * rangeSlider2 + coefficients[0][1] * rangeSlider3 + coefficients[0][2] * rangeSlider4);
-    const RBiodiv = constantes[7] * (rangeSlider1 + coefficients[1][0] * rangeSlider2 + coefficients[1][1] * rangeSlider3 + coefficients[1][2] * rangeSlider4);
-    const AEau = constantes[8] * (1 + rangeSlider1 + coefficients[2][0] * rangeSlider2 + coefficients[2][1] * rangeSlider3 + coefficients[2][2] * rangeSlider4);
-    const REau = constantes[9] * (rangeSlider1 + coefficients[2][0] * rangeSlider2 + coefficients[2][1] * rangeSlider3 + coefficients[2][2] * rangeSlider4);
-    const RFournisseurs = constantes[6] * (coefficients[3][0] * rangeSlider2 + coefficients[3][1] * rangeSlider3 + coefficients[3][2] * rangeSlider4);
+    const A = CT[1] * (rangeSlider1 + CF[0][0] * rangeSlider2 + CF[0][1] * rangeSlider3 + CF[0][2] * rangeSlider4);
+    const B = CT[5] * (1 + rangeSlider1 + CF[0][0] * rangeSlider2 + CF[0][1] * rangeSlider3 + CF[0][2] * rangeSlider4);
+    const C = CT[7] * (rangeSlider1 + CF[1][0] * rangeSlider2 + CF[1][1] * rangeSlider3 + CF[1][2] * rangeSlider4);
+    const D = CT[9] * (rangeSlider1 + CF[2][0] * rangeSlider2 + CF[2][1] * rangeSlider3 + CF[2][2] * rangeSlider4);
+    const E = CT[8] * (1 + rangeSlider1 + CF[2][0] * rangeSlider2 + CF[2][1] * rangeSlider3 + CF[2][2] * rangeSlider4);
+    const F = CT[6] * (CF[3][0] * rangeSlider2 + CF[3][1] * rangeSlider3 + CF[3][2] * rangeSlider4);
+    const G = CT[0] * (1 + rangeSlider1 + CF[4][0] * rangeSlider2 + CF[4][1] * rangeSlider3 + CF[4][2] * rangeSlider4);
+    const H = CT[1] * (rangeSlider1 + CF[4][0] * rangeSlider2 + CF[4][1] * rangeSlider3 + CF[4][2] * rangeSlider4);
+    const I = CT[2] * (1 + rangeSlider1 + CF[5][0] * rangeSlider2 + CF[5][1] * rangeSlider3 + CF[5][2] * rangeSlider4);
+    const J = CT[3] * (rangeSlider1 + CF[5][0] * rangeSlider2 + CF[5][1] * rangeSlider3 + CF[5][2] * rangeSlider4);
+    const K = CT[4] * (1 + rangeSlider1) - (CF[6][0] * rangeSlider2 + CF[6][1] * rangeSlider3 + CF[6][2] * rangeSlider4);
 
     // Tableau des résultats
     return [
-        Math.round(RCO2),
-        Math.round(ACO2),
-        Math.round(RBiodiv),
-        Math.round(REau),
-        Math.round(AEau),
-        Math.round(RFournisseurs),
-        Math.round(CA),
-        Math.round(RCA),
-        Math.round(EBE),
-        Math.round(REBE),
-        Math.round(reserve)
+        Math.round(A),
+        Math.round(B),
+        Math.round(C),
+        Math.round(D),
+        Math.round(E),
+        Math.round(F),
+        Math.round(G),
+        Math.round(H),
+        Math.round(I),
+        Math.round(J),
+        Math.round(K)
     ];
 }
 
-
-// Update des valeurs
+        // Update des valeurs
 
 function updateVariables(variables) {
     const elementIds = ['RCO2', 'ACO2', 'RBiodiv', 'REau', 'AEau', 'RFournisseurs','CA','RCA','EBE', 'REBE', 'reserve'];
