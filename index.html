@@ -561,11 +561,11 @@ let CT = [];
 async function fetchM() {
     const response = await fetch('m.php');
     const data = await response.json();
-    CF = data.cf;
-    CT = data.ct;
+    let CF = data.cf;
+    let CT = data.ct;
 }        
 
-await fetchM();
+fetchM();
 
 function calculBackend(rangeSlider1, rangeSlider2, rangeSlider3, rangeSlider4) {
     rangeSlider1 = rangeSlider1 / 100;
