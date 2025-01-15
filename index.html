@@ -556,18 +556,29 @@ ul {
     <script>
       
 let CF = [];
-let CT = [];    
+let CT = [];
 
+// Fonction pour récupérer les données depuis le serveur
 async function fetchM() {
-    const response = await fetch('m.php');
-    const data = await response.json();
-    let CF = data.cf;
-    let CT = data.ct;
-}        
+    try {
+        const response = await fetch('m.php');
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP ! statut : ${response.status}`);
+        }
+        const data = await response.json();
+        CF = data.cf;
+        CT = data.ct;
+    } catch (error) {
+        console.error("Erreur lors de la récupération des données :", error);
+    }
+}
 
+// Appelle la fonction pour charger les données
 fetchM();
 
+// Fonction de calcul
 function calculBackend(rangeSlider1, rangeSlider2, rangeSlider3, rangeSlider4) {
+    // Normalisation des valeurs d'entrée
     rangeSlider1 = rangeSlider1 / 100;
     rangeSlider2 = rangeSlider2 / 100;
     rangeSlider3 = rangeSlider3 / 100;
@@ -586,7 +597,7 @@ function calculBackend(rangeSlider1, rangeSlider2, rangeSlider3, rangeSlider4) {
     const J = CT[3] * (rangeSlider1 + CF[5][0] * rangeSlider2 + CF[5][1] * rangeSlider3 + CF[5][2] * rangeSlider4);
     const K = CT[4] * (1 + rangeSlider1) - (CF[6][0] * rangeSlider2 + CF[6][1] * rangeSlider3 + CF[6][2] * rangeSlider4);
 
-    // Tableau des résultats
+    // Retourne les résultats arrondis
     return [
         Math.round(A),
         Math.round(B),
@@ -601,6 +612,7 @@ function calculBackend(rangeSlider1, rangeSlider2, rangeSlider3, rangeSlider4) {
         Math.round(K)
     ];
 }
+
 
         // Update des valeurs
 
