@@ -560,20 +560,17 @@ let CT = [];
 
 // Fonction pour récupérer les données depuis le serveur
 async function fetchM() {
-    try {
-        const response = await fetch('m.php');
-        if (!response.ok) {
-            throw new Error(`Erreur HTTP ! statut : ${response.status}`);
-        }
-        const data = await response.json();
-        CF = data.cf;
-        CT = data.ct;
-    } catch (error) {
-        console.error("Erreur lors de la récupération des données :", error);
-    }
+    const response = await fetch('m.php');
+    const data = await response.json();
+    CF = data.cf;
+    CT = data.ct;
 }
 
+async function getM() {
+    await fetchM();
+}
 
+getM();
 
 // Fonction de calcul
 function calculBackend(rangeSlider1, rangeSlider2, rangeSlider3, rangeSlider4) {
@@ -945,7 +942,6 @@ popup4.addEventListener('click', (event) => {
 });
 
 // Initialisation
-fetchM();
 const newVariables = calculBackend(
     parseFloat(rangeSlider1.value),
     parseFloat(rangeSlider2.value),
