@@ -557,37 +557,35 @@ ul {
       
 // Calcul
 
+const coefficients = [
+    [-0.30, -0.20, -0.40], // C
+    [-0.30, -0.13, -0.30], // B
+    [-0.15, -0.15, -0.25], // E
+    [0.30, 0.0, 0.0],      // F
+    [0.15, 0.1, -0.05],    // CA
+    [-0.15, -0.05, 0.1],   // EBE
+    [145, 110, 135]        // Dette
+];
+
+    // Matrice des constantes fixes
+const constantes = [
+    500,    // Constante pour CA
+    100,    // Constante pour RCA et RCO2
+    500/14, // Constante pour EBE
+    100,    // Constante pour REBE
+    200,    // Constante pour reserve
+    200000, // Constante pour ACO2
+    100,    // Constante pour RFournisseurs
+    100,    // Constante pour RBiodiv
+    1500000,// Constante pour AEau
+    100     // Constante pour REau
+];
 
 function calculBackend(rangeSlider1, rangeSlider2, rangeSlider3, rangeSlider4) {
     rangeSlider1 = rangeSlider1 / 100;
     rangeSlider2 = rangeSlider2 / 100;
     rangeSlider3 = rangeSlider3 / 100;
     rangeSlider4 = rangeSlider4 / 100;
-
-    // Matrice des coefficients et des constantes
-    const coefficients = [
-        [-0.30, -0.20, -0.40], // C
-        [-0.30, -0.13, -0.30], // B
-        [-0.15, -0.15, -0.25], // E
-        [0.30, 0.0, 0.0],      // F
-        [0.15, 0.1, -0.05],    // CA
-        [-0.15, -0.05, 0.1],   // EBE
-        [145, 110, 135]        // Dette
-    ];
-
-    // Matrice des constantes fixes
-    const constantes = [
-        500,    // Constante pour CA
-        100,    // Constante pour RCA et RCO2
-        500/14, // Constante pour EBE
-        100,    // Constante pour REBE
-        200,    // Constante pour reserve
-        200000, // Constante pour ACO2
-        100,    // Constante pour RFournisseurs
-        100,    // Constante pour RBiodiv
-        1500000,// Constante pour AEau
-        100     // Constante pour REau
-    ];
 
     // Calculs
     const CA = constantes[0] * (1 + rangeSlider1 + coefficients[4][0] * rangeSlider2 + coefficients[4][1] * rangeSlider3 + coefficients[4][2] * rangeSlider4);
